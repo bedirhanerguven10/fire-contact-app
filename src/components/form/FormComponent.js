@@ -20,9 +20,9 @@ const handleChange = (e) => {
   e.preventDefault();
   const name = e.target.name;
   const value = e.target.value;
-  console.log(name,value);
+  //console.log(name,value);
   setInfo({...info,[name]:value});
-  console.log(info)
+  //console.log(info)
 }
 
   return (
