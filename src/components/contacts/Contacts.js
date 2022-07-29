@@ -36,19 +36,19 @@ const Contacts = ({editUser}) => {
           
 
             {
-              // /* Bilgiler gelmediği durumda Loading yazısı görünsün */
+              // /* Loading text will be shown if tnere is no data response */
               isLoading ? (
                 <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>            
                 <TableCell colSpan={5} align="center">Loading</TableCell>             
               </TableRow>
               ) :
-              // Bilgiler olmadığı,boş olduğu  durumda veri bulunamadı mesajı
+              // "No result" message if there is no data 
                 contactList?.length===0 ?(
                   <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>            
                   <TableCell colSpan={5} align="center">NO RESULT FOUND</TableCell>             
                 </TableRow>
                   ) :
-                  // Bilgiler geldiği zaman aşağıya yazılacak kodlar çalışsın
+                  // Codes when data response
                   (
                     contactList?.map((item,index)=>(
 
@@ -57,11 +57,13 @@ const Contacts = ({editUser}) => {
                       <TableCell textAlign="center">{item.phoneNumber}</TableCell>
                       <TableCell textAlign="center">{item.gender}</TableCell> 
                       <TableCell textAlign="center" onClick={()=>DeleteUser(item.id)}>
-                        <DeleteIcon/>
+                        <DeleteIcon style={{cursor:"pointer"}}/>
                       </TableCell> 
                       <TableCell textAlign="center"
-                     >
-                        <EditIcon/>
+                     onClick={()=>editUser(
+                      item.id, item.username,item.phoneNumber,item.gender
+                    )}>
+                        <EditIcon style={{cursor:"pointer"}}/>
                       </TableCell> 
                      </TableRow>      
 
@@ -69,3 +71,14 @@ const Contacts = ({editUser}) => {
                   )
 
             }
+          
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
+  );
+};
+
+export default Contacts;
+
+
